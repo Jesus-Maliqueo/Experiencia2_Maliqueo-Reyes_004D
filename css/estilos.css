@@ -25,9 +25,14 @@
 
 .articulo{
    
+<<<<<<< HEAD
     padding-top: 1px;
     padding-bottom: 1px;
     
+=======
+    padding-top: 10px;
+    padding-bottom: 1px;
+>>>>>>> 98d21a199471109410f5552b7266bef4c0ad483c
 }
 
 
@@ -216,5 +221,26 @@ footer{
 .color {
   background-color: rgb(217, 255, 237);
   border-color: rgb(217, 255, 237);
+}
+.diseform{
+  text-align: center;
+  background-color: rgb(180, 88, 88);
+  
+  
+}
+.fondolabel{
+  background-color: rgba(204, 100, 86, 0.473);
+}
+.tamanno{
+  padding-top: 100px;
+  padding-bottom: 25%;
+  border-radius: 60px;
+  margin-top: 50px;
+  margin-left: 80px;
+  margin-right: 80px;
+}
+.colorbtn{
+  background-color: rgb(204, 100, 86, 0.473);
+  color: #000;
 }
 
