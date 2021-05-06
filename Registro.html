@@ -13,7 +13,8 @@
         {
             contra = document.getElementById('contraseña').value;
             nom= document.getElementById('nombre').value;
-            cor = document.getElementById('correo').value; 
+            cor = document.getElementById('correo').value;
+            ubicacion = document.getElementById('opciones').selectedIndex; 
             
 
 
@@ -41,6 +42,12 @@
                 document.datos.contra.focus();
                 return false;
             }
+            if (ubicacion == null || ubicacion == 0)
+                {
+                    alert('Seleccione un país');
+                    document.datos.opciones.focus();
+                    return false;
+                }
         }
         function mostrarContrasena(){
                 var tipo = document.getElementById("contraseña");
@@ -90,9 +97,30 @@
             <br><br>
             <label class="fondolabel" for="contraseña">Ingrese contraseña</label>
             <input type="password" name="contra" id="contraseña" placeholder="Ingrese su contraseña">
-            <div class="col-form-label">
-                <button class=" colorbtn btn btn-primary" type="button" onclick="mostrarContrasena()">Mostrar Contraseña</button>
-              </div>
+
+            <br>
+            
+            <p class="letra">Eliga su genero</p>
+            <input type="radio" id="male" name="gender" value="male">
+            <label class="fondolabel" for="male">Hombre</label><br>
+            <input type="radio" id="female" name="gender" value="female">
+            <label class="fondolabel" for="female">Mujer</label><br>
+            <input type="radio" id="other" name="gender" value="other">
+            <label class="fondolabel" for="other">Otro</label>
+            <br><br>
+            <label class="fondolabel" for="opcion">País</label>
+            <select id="opciones" name="opcion">
+                <option value="">- Selecciona una opción -</option>
+                <option value="1">Chile</option>
+                <option value="2">Venezuela</option>
+                <option value="3">Perú</option>
+                <option value="4">Mexico</option>
+                <option value="5">Colombia</option>
+                <option value="6">Bolivia</option>
+                <option value="7">España</option>
+                <option value="8">Argentina</option>
+              </select>
+
             <br><br>
             <input type="submit" value="Enviar Datos">
             <br><br>
