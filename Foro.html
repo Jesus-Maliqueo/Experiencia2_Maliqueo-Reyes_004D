@@ -7,6 +7,59 @@
     <link href="css/bootstrap.min.css" type="text/css" rel="stylesheet">
     <link href="css/estilos.css" type="text/css" rel="stylesheet">
     <title>Foro de deportes</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+        $(function()
+        {
+          $("#comentario").validate({
+                rules: {
+                    titulo: {
+                        required : true,
+                        titulo : true
+                    },
+                    selector: "required",
+                    nombre:  "required",
+                    email: "required",
+                    password: "required",
+                    password2: {
+                        requered : true,
+                        equalTo: "#password1"
+                    }
+                },//reglas
+                messages : {
+                    titulo :{
+                        required: "Ingresa un titulo",
+                        titulo: "formato no valido"
+                    },
+                    selector :{
+                        required: "selecciona un deporte"
+                    },
+                    nombre :{
+                        required: "Ingresa tu nombre",
+                        nom: "El formato no es valido"
+                    },
+                    email : {
+                        required: "se requiere el email",
+                        email: "El formato no el valido"
+                    },
+                    password1 :{
+                        required: "Ingresa una contraseña",
+                        minlenght: "Ingresa una contraseña mas larga",
+                        maxlenght: "Ingresa una contraseña mas corta"
+                    },
+                    password2 : {
+                        required: "reingresa la contraseña",
+                        equalTo: "la contraseña tiene que ser igual",
+                        maxlenght: "Ingresa una contraseña mas corta"
+                        
+                    }
+                }
+
+            });
+        });
+    </script>
 </head>
 <body>
     <header>
@@ -32,17 +85,17 @@
     
     <section id="zonacomen" class="page-section portada">
         <div class="container">
-            <div class="text-center" style="color: aliceblue;"><h2><b>COMENTA SOBRE DEPORTES</b></h2></div>
-            <form method="POST" name="Comentario" id="comentario">
+            <div class="text-center colortext" ><h2><b>COMENTA SOBRE DEPORTES</b></h2></div>
+            <form method="POST" name="Comentario" id="comentario" action="index1.html">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group mb-md-0">
-                            <label for="ltitulo" style="color: aliceblue;">Titulo del tema:</label>
+                        <div class="form-group mb-md-0 colortext">
+                            <label for="ltitulo" >Titulo del tema:</label>
                             <input type="text" class="form-titulo" id="titulo" placeholder="Ingresar titulo" required="" autofocus="">
                         </div>
-                        <div class="form-group form-group-textarea">
-                            <label for="tema" style="color: aliceblue;">Eligen de que hablar:</label>
-                            <select name="Deportes" class="form-titulo">
+                        <div class="form-group form-group-textarea colortext">
+                            <label for="tema" >Eligen de que hablar:</label>
+                            <select id="selector"name="Deportes" class="form-titulo" required>
                                 <optgroup name="Eligen de que hablar:">
                                     <option value="1">voleibol</option>
                                     <option value="2">basquetbol</option>
@@ -53,26 +106,34 @@
                             </select><br><br>
                         </div>
 
-                        <div class="form-group ">
-                            <label for="lnombre">Nombre Usuario:</label> 
+                        <div class="form-group colortext">
+                            <label for="lnombre" >Nombre Usuario:</label> 
                             <input type="text"  class="form-titulo"id="nom" name="nombre" value="" placeholder="Ingrese su nombre" required="" autofocus="">
+                        </div><br><br>
 
-                            <label for="lCorreo">Ingresar correo: </label> 
-                            <input type="email" class="form-titulo" id="mail" name="email"  placeholder="ingresar email" required="">
+                        <div class="form-group colortext">
+                            <label for="lCorreo" >Ingresar correo: </label> 
+                            <input type="email" class="form-titulo" id="email" name="email"  placeholder="ingresar email" required="">
+                        </div><br><br>
 
-                            <label for="lpassword">Contraseña Usuario:</label> 
-                            <input type="password" class="form-titulo" id="pass" name="password" value="" placeholder="Ingrese su contraseña" required="" minlength="7" maxlength="12">
+                        <div class="form-group colortext">
+                            <label for="lpassword" >Contraseña Usuario:</label> 
+                            <input type="password" class="form-titulo" id="pass" name="password1" value="" placeholder="Ingrese su contraseña" required="" minlength="7" maxlength="12">
+                        </div><br><br>
+
+                        <div class="form-group colortext">
+                            <label for="lpassword" >Ingrese denuevo la Contraseña:</label> 
+                            <input type="password" class="form-titulo" id="pass2" name="password2" value="" placeholder="reingrese su contraseña" required="" minlength="7" maxlength="12">
                         </div>
                         <br><br>
-                        <div class="form-group">
                             <input type="submit" class="form-titulo" value="enviar" >
-                        </div>
+                        
                     </div>
                     <div class="col-md-6">
                         <div class="form-group form-group-textarea">
                             <label for="ltexto"></label>
-                            <textarea class="form-titulo"  placeholder="habla sobre tu tema" required="" 
-                            data-validation-required-message="porfavor ingrese texto"></textarea>
+                            <textarea class="form-titulo"  placeholder="habla sobre tu tema" 
+                            ></textarea>
                         </div>
                     </div>
                 </div><br><br>
@@ -95,8 +156,5 @@
       </footer>
 
 
-      <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 </html>
