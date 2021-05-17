@@ -15,50 +15,58 @@
         {
           $("#comentario").validate({
                 rules: {
-                    titulo: {
-                        required : true,
-                        titulo : true
-                    },
-                    selector: "required",
+                    titulo: "required",
                     nombre:  "required",
                     email: "required",
-                    password: "required",
-                    password2: {
-                        requered : true,
-                        equalTo: "#password1"
-                    }
+                    pass: "required",
+                    pass2: {
+                        required : true,
+                        equalTo: "#pass1"
+                        
+                    },
+                    cuadrotext:"required"
+
                 },//reglas
                 messages : {
                     titulo :{
-                        required: "Ingresa un titulo",
-                        titulo: "formato no valido"
-                    },
-                    selector :{
-                        required: "selecciona un deporte"
+                        required: 'Ingresa un titulo',
+                        text: 'formato no valido'
                     },
                     nombre :{
-                        required: "Ingresa tu nombre",
-                        nom: "El formato no es valido"
+                        required: 'nesesitas Ingresa tu nombre',
+                        text: 'El formato no es valido'
                     },
                     email : {
-                        required: "se requiere el email",
-                        email: "El formato no el valido"
+                        required: 'se requiere el email',
+                        email: 'El formato no el valido'
                     },
-                    password1 :{
-                        required: "Ingresa una contraseña",
-                        minlenght: "Ingresa una contraseña mas larga",
-                        maxlenght: "Ingresa una contraseña mas corta"
+                    pass1 :{
+                        required: 'debes ingresa una contraseña',
+                        minlength: 'Ingresa una contraseña mas larga'
                     },
-                    password2 : {
-                        required: "reingresa la contraseña",
-                        equalTo: "la contraseña tiene que ser igual",
-                        maxlenght: "Ingresa una contraseña mas corta"
-                        
+                    pass2 : {
+                        required: 'ingresa la contraseña anterior',
+                        equalTo: 'la contraseña tiene que ser igual',
+                        minlength: 'Ingresa una contraseña mas larga'
+                    },
+                    cuadrotext: {
+                        required:'ingrese texto porfavor'
                     }
                 }
 
             });
         });
+
+        //eventos dom//
+
+        function tituloMayuscula(){
+            var a=document.getElementById("titulo");
+            a.value = a.value.toUpperCase();
+        }
+        function colorTextArea(a){
+            a.style.background="mistyrose";
+        }
+
     </script>
 </head>
 <body>
@@ -89,53 +97,54 @@
             <form method="POST" name="Comentario" id="comentario" action="index1.html">
                 <div class="row">
                     <div class="col-md-6">
-                        <div class="form-group mb-md-0 colortext">
+                        <div class="form-group  colortext">
                             <label for="ltitulo" >Titulo del tema:</label>
-                            <input type="text" class="form-titulo" id="titulo" placeholder="Ingresar titulo" required="" autofocus="">
-                        </div>
+                            <input type="text" class="form-titulo" id="titulo" name="titulo" placeholder="Ingresar titulo" required="" autofocus="" onchange="tituloMayuscula()">
+                        </div><br><br>
                         <div class="form-group form-group-textarea colortext">
                             <label for="tema" >Eligen de que hablar:</label>
-                            <select id="selector"name="Deportes" class="form-titulo" required>
+                            <select id="selector"name="Deportes" class="form-titulo" >
                                 <optgroup name="Eligen de que hablar:">
                                     <option value="1">voleibol</option>
                                     <option value="2">basquetbol</option>
                                     <option value="3">rugby</option>
                                     <option value="4">futbol</option>
                                     <option value="5">tenis</option>
+                                    <option value="6">otros</option>
                                 </optgroup>
                             </select><br><br>
                         </div>
 
-                        <div class="form-group colortext">
+                        <div class="form-group colortext" >
                             <label for="lnombre" >Nombre Usuario:</label> 
-                            <input type="text"  class="form-titulo"id="nom" name="nombre" value="" placeholder="Ingrese su nombre" required="" autofocus="">
+                            <input type="text"  class="form-titulo"id="nom" name="nombre" value="" placeholder="Ingrese su nombre" required autofocus="">
                         </div><br><br>
 
                         <div class="form-group colortext">
                             <label for="lCorreo" >Ingresar correo: </label> 
-                            <input type="email" class="form-titulo" id="email" name="email"  placeholder="ingresar email" required="">
+                            <input type="email" class="form-titulo" id="email" name="email"  placeholder="ingresar email" required>
                         </div><br><br>
 
                         <div class="form-group colortext">
                             <label for="lpassword" >Contraseña Usuario:</label> 
-                            <input type="password" class="form-titulo" id="pass" name="password1" value="" placeholder="Ingrese su contraseña" required="" minlength="7" maxlength="12">
+                            <input type="password" class="form-titulo" id="pass" name="pass1" value="" placeholder="Ingrese su contraseña" required  minlength="7" maxlength="12">
                         </div><br><br>
 
                         <div class="form-group colortext">
-                            <label for="lpassword" >Ingrese denuevo la Contraseña:</label> 
-                            <input type="password" class="form-titulo" id="pass2" name="password2" value="" placeholder="reingrese su contraseña" required="" minlength="7" maxlength="12">
+                            <label for="lpassword2" >Ingrese denuevo la Contraseña:</label> 
+                            <input type="password" class="form-titulo" id="password2" name="pass2" value="" placeholder="reingrese su contraseña" required  minlength="7" maxlength="12">
                         </div>
-                        <br><br>
-                            <input type="submit" class="form-titulo" value="enviar" >
-                        
+                        <br>
                     </div>
                     <div class="col-md-6">
-                        <div class="form-group form-group-textarea">
+                        <div class="form-group form-group-textarea colortext">
                             <label for="ltexto"></label>
-                            <textarea class="form-titulo"  placeholder="habla sobre tu tema" 
-                            ></textarea>
+                            <textarea class="form-titulo"  placeholder="habla sobre tu tema" name="cuadrotext" required onfocus="colorTextArea(this)"></textarea>
                         </div>
                     </div>
+
+                    <input type="submit"  class="botones" value="enviar" >
+                    <input type="reset" class="botones" style="margin-left: 10px;" value="limpiar">
                 </div><br><br>
 
             </form>

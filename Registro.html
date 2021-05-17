@@ -9,13 +9,14 @@
     
     <title>Registro</title>
     <script type="text/Javascript">
+    
         function validacion()
         {
             contra = document.getElementById('contraseña').value;
             nom= document.getElementById('nombre').value;
             cor = document.getElementById('correo').value;
             ubicacion = document.getElementById('opciones').selectedIndex; 
-            
+            fono = document.getElementById('telefono').value;
 
 
             if(nom == null || nom.length==0 || /^\s+$/.test(nom))
@@ -48,17 +49,28 @@
                     document.datos.opciones.focus();
                     return false;
                 }
+            if(!(/^\d{9}$/.test(fono)) )
+                {
+                    alert('Error...debe ingresar un teléfono válido');
+                    document.getElementById('telefono').value="";
+                    document.datos.fono.focus();
+                    return false;
+                }    
+                return true;
+            
         }
-        function mostrarContrasena(){
-                var tipo = document.getElementById("contraseña");
-                if(tipo.type=="password"){
-                    tipo.type == "text";
-                }else{
-                    tipo.type == "password";
-                }   
-            }
-
-
+        function CambiarMayusculas()
+        {
+            var a = document.getElementById('nombre');
+            a.value = a.value.toUpperCase();
+        }
+        function CambiaColor(a)
+        {
+            a.style.background = "rgb(180, 88, 88)";
+        }
+        function ColorNormal(a) {
+            a.style.background = "white"
+        }
     </script>
 </head>
 <body>
@@ -70,7 +82,7 @@
           <a class="navbar-brand" href="#">
             <img src="img/logo.png" width="30px" height="30px" alt="">
           </a>
-          <div class="collapse navbar-collapse" id="opciones">
+          <div class="collapse navbar-collapse" id="opcio">
             <ul class="navbar-nav">
                   <li class="nav-item"><a class="nav-link" href="index1.html">Home</a></li>
                   <li class="nav-item"><a class="nav-link" href="galeriaImagenes.html">Deportes</a></li>
@@ -89,7 +101,7 @@
         <form class="diseform hero-image tamanno" action="index1.html" method="post" name="datos" onsubmit="return validacion()">
             <h1 class="titulo">Registro de cuenta</h1>
             <label class="fondolabel" for="nombre">Ingrese Nombre y apellido</label>
-            <input type="text" name="nom" id="nombre" placeholder="Digite su nombre">
+            <input type="text" name="nom" id="nombre" placeholder="Digite su nombre" onchange="CambiarMayusculas()">
             <br><br>
             <label class="fondolabel" for="correo">Ingrese Correo</label>
             <input type="text" name="cor" id="correo" placeholder="Ingrese su correo">
@@ -107,22 +119,24 @@
             <label class="fondolabel" for="female">Mujer</label><br>
             <input type="radio" id="other" name="gender" value="other">
             <label class="fondolabel" for="other">Otro</label>
+
             <br><br>
-            <label class="fondolabel" for="opcion">País</label>
+            <label  class="fondolabel" for="opcion">País</label>
             <select id="opciones" name="opcion">
                 <option value="">- Selecciona una opción -</option>
                 <option value="1">Chile</option>
                 <option value="2">Venezuela</option>
                 <option value="3">Perú</option>
-                <option value="4">Mexico</option>
-                <option value="5">Colombia</option>
-                <option value="6">Bolivia</option>
-                <option value="7">España</option>
-                <option value="8">Argentina</option>
+                <option value="4">Argentina</option>
+                <option value="5">Mexico</option>
+                <option value="6">Colombia</option>
               </select>
 
             <br><br>
-            <input type="submit" value="Enviar Datos">
+            <label class="fondolabel" for="Teléfono">Número Telefónico</label>
+            <input type="text" name="fono" id="telefono" placeholder="Digite su teléfono">
+            <br><br>
+            <input type="submit" value="Enviar Datos" onmouseover="CambiaColor(this)" onmouseout="ColorNormal(this)">
             <br><br>
             
            
